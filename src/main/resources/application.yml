@@ -1,0 +1,39 @@
+server:
+  tomcat:
+    uri-encoding: utf-8
+    max-http-post-size: -1
+  port: 8882
+  servlet:
+    session:
+      cookie:
+        path: /
+    context-path: /jpa
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_jpa?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&useSSL=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+     initial-size: 5
+     min-idle: 5
+     max-active: 15
+     min-evictable-idle-time-millis: 1000000
+     max-evictable-idle-time-millis: 1000000
+     validation-query: select 1
+     test-while-idle: true
+     test-on-borrow: true
+     remove-abandoned: true
+     remove-abandoned-timeout-millis: 1200000
+     time-between-eviction-runs-millis: 100000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 1MB
