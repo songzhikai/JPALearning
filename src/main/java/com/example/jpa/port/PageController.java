@@ -29,15 +29,14 @@ public class PageController {
         return list;
     }
     @RequestMapping("/queryPageList")
-    public org.springframework.data.domain.Page<Page> queryPageList(){
-        String category = "1";
-        String pageName = "t";
-        String sortProp = "desc";
-        String sortOrder = "opt_time";
-        int pageNumber = 2; //当前第几页
+    public List<Page> queryPageList(){
+        String sortOrder = "desc";
+        String sortProp = "optTime";
+        int pageNumber = 0; //从第几条开始查，默认是第一条
         int pageSize = 10; //每页个数
-        org.springframework.data.domain.Page<Page> list = pageService.queryPageList(pageName, category, sortProp, sortOrder, pageNumber, pageSize);
-        return list;
+        org.springframework.data.domain.Page<Page> list = pageService.queryPageList(sortProp, sortOrder, pageNumber, pageSize);
+        List<Page> res = list.getContent();
+        return res;
     }
 
 }
